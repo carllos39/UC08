@@ -117,3 +117,44 @@ if not exist %BINLOG_DIR% mkdir %BINLOG_DIR%
 
 REM Copiar os arquivos binlog
 xcopy /Y /Q %MYSQL_BINLOG_PATH%\mysql-bin.* %BINLOG_DIR%
+
+16/06/2025
+
+Entidades
+Alunos -matricula,nome,data_nascimento,telefone
+Cursos -ingles 60hs,espanhol 80 hs
+Turma- 
+ingles - data_inicio,horario,nivel 
+espanhol-data_inicio,horario,nivel 
+
+
+possiveis tabelas
+
+create table aluno(id int AUTO_INCREMENT PRIMARY KEY,
+                   matricula varchar(20) not null,
+                   nome varchar(45) not null,
+                   data_nascimento date not null,
+                   telefone varchar(20) not null );
+                   
+create table cursos(id int AUTO_INCREMENT PRIMARY KEY,
+                   nome varchar(45) not null,
+                   totalhora time not null
+        
+                  );
+                  
+create table turma(id int AUTO_INCREMENT PRIMARY KEY,
+                   data_inicio datetime not null,
+                   horario time not null,
+                   nivel varchar(30) not null,
+                   aluno_id int not null,
+                    CONSTRAINT fk_cursos_aluno FOREIGN KEY(aluno_id)REFERENCES aluno(id)
+                  );
+create table matricula(id int AUTO_INCREMENT PRIMARY KEY,
+                    numero varchar(20)not null,
+                    aluno_id int not null,
+                    CONSTRAINT fk_matricula_aluno FOREIGN KEY(aluno_id)REFERENCES aluno(id),
+                    cursos_id int not null,
+                    CONSTRAINT fk_matricula_cursos FOREIGN KEY(cursos_id)REFERENCES cursos(id)
+                  );
+
+

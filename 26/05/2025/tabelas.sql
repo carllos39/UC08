@@ -131,8 +131,8 @@ espanhol-data_inicio,horario,nivel
 possiveis tabelas
 
 create table aluno(id int AUTO_INCREMENT PRIMARY KEY,
-                   matricula varchar(20) not null,
-                   nome varchar(45) not null,
+                   nome varchar(20) not null,
+                   sobrenome varchar(45) not null,
                    data_nascimento date not null,
                    telefone varchar(20) not null );
                    
@@ -142,12 +142,19 @@ create table cursos(id int AUTO_INCREMENT PRIMARY KEY,
         
                   );
                   
-create table turma(id int AUTO_INCREMENT PRIMARY KEY,
-                   data_inicio datetime not null,
-                   horario time not null,
-                   nivel varchar(30) not null,
-                   aluno_id int not null,
-                    CONSTRAINT fk_cursos_aluno FOREIGN KEY(aluno_id)REFERENCES aluno(id)
+create table turma_ingles(id int AUTO_INCREMENT PRIMARY KEY,
+                         data_inicio datetime not null,
+                         horario time not null,
+                         nivel varchar(30) not null,
+                         aluno_id int not null,
+                        CONSTRAINT fk_cursos_aluno FOREIGN KEY(aluno_id)REFERENCES aluno(id)
+                  );
+ create table turma_espanhol(id int AUTO_INCREMENT PRIMARY KEY,
+                         data_inicio datetime not null,
+                         horario time not null,
+                         nivel varchar(30) not null,
+                         aluno_id int not null,
+                        CONSTRAINT fk_cursos_alunos FOREIGN KEY(aluno_id)REFERENCES aluno(id)
                   );
 create table matricula(id int AUTO_INCREMENT PRIMARY KEY,
                     numero varchar(20)not null,
